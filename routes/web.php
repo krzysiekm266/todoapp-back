@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('task/store',[TaskController::class,'store']);
+Route::get('task/index',[TaskController::class,'index']);
+Route::get('task/show/{task}',[TaskController::class,'show'])->where('task','[a-zA-Z0-9]+');
