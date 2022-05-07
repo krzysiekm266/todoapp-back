@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('title');
             $table->boolean('completed')->default(false);
             $table->timestamps();
+            $table->timestamp('completed_at')->nullable();
         });
     }
 

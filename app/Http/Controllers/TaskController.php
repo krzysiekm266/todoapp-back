@@ -14,9 +14,12 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $data = Task::all();
-        $headers = ['Content-Type'=>'application/json'];
-        return  response()->json($data, 200, $headers);;
+       return $data = Task::all();
+        // $headers = ['Content-Type'=>'application/json',
+        // 'Access-Control-Allow-Origin'=>'http://127.0.0.1:4200/tasks',
+        // ];
+        // return  response()->json($data, 200, $headers);
+
     }
 
     /**

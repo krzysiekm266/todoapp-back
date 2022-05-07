@@ -21,6 +21,7 @@ class TaskFactory extends Factory
             'title'=>$this->faker->paragraph($nbSentences = 1, $variableNbSentences = true),
             'completed'=>false,
             'created_at'=>now(),
+
         ];
     }
 }
