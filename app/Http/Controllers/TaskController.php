@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -14,12 +15,15 @@ class TaskController extends Controller
      */
     public function index()
     {
-       return $data = Task::all();
-        // $headers = ['Content-Type'=>'application/json',
-        // 'Access-Control-Allow-Origin'=>'http://127.0.0.1:4200/tasks',
-        // ];
-        // return  response()->json($data, 200, $headers);
+        $data = Task::all();
 
+        // return  response($data)->withHeaders([
+        //     'Content-Type'=>'application/json',
+        //     'Access-Control-Allow-Origin' => '*',
+        //     'Access-Control-Request-Method' =>'GET,HEAD,OPTIONS'
+
+        // ]);
+            return $data;
     }
 
     /**
@@ -41,8 +45,12 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         //for testing
-        $task = ['title'=>'wyniesc smieci'];
-        Task::create($task)->save();
+        $task = [
+            'title'=>$request->title,
+            'completed'=>false
+
+        ];
+        return Task::create($task)->save();
     }
 
     /**
@@ -75,9 +83,19 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
+    // public function update(Request $request, $id)
+    // {
+    //     $task = Task::where('id',$id)->first();
+    //     $task->completed =  !$task->completed;
+    //     $task->save();
+    //    return $task;
+    // }
     public function update(Request $request, Task $task)
     {
-        //
+
+        $task->completed =  !$task->completed;
+        $task->save();
+       return $task;
     }
 
     /**
@@ -88,6 +106,6 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        return $task->delete();
     }
 }

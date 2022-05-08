@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('task/store',[TaskController::class,'store']);
 Route::get('task/index',[TaskController::class,'index']);
 Route::get('task/show/{task}',[TaskController::class,'show'])->where('task','[a-zA-Z0-9]+');
+Route::post('task/store',[TaskController::class,'store']);
+Route::put('task/update/{task}',[TaskController::class,'update']);
+Route::delete('task/delete/{task}',[TaskController::class,'destroy'])->where('task','[a-zA-Z0-9]+');
+
+

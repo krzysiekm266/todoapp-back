@@ -13,5 +13,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        //  'task/update/*',
+        //  'task/store',
+        //  'task/delete/*',
     ];
 }
