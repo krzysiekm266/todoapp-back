@@ -24,7 +24,7 @@ Route::controller(TaskController::class)->group(
     Route::get('task/index', 'index');
     Route::get('task/show/{task}', 'show')->where('task', '[a-zA-Z0-9]+');
     Route::post('task/store', 'store')->where('task', '[a-zA-Z0-9]+');
-    Route::put('task/update/{task}', 'update')->where('task', '[a-zA-Z0-9]+');
+    Route::put('task/update/{task}', 'update');
     Route::delete('task/delete/{task}', 'destroy')->where('task', '[a-zA-Z0-9]+');
 });
 
