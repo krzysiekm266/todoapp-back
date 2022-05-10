@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Client\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\JsonResponse as HttpFoundationJsonResponse;
 
 class TaskController extends Controller
 {
@@ -23,7 +25,7 @@ class TaskController extends Controller
         //     'Access-Control-Request-Method' =>'GET,HEAD,OPTIONS'
 
         // ]);
-            return $data;
+        return $data;
     }
 
     /**
@@ -44,13 +46,15 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //for testing
-        $task = [
-            'title'=>$request->title,
-            'completed'=>false
 
-        ];
-        return Task::create($task)->save();
+        $task = Task::create(
+            [
+                'title'=>$request->title,
+                'completed'=>false
+            ]);
+        $task->save();
+
+        return $task;
     }
 
     /**
@@ -83,18 +87,22 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     $task = Task::where('id',$id)->first();
-    //     $task->completed =  !$task->completed;
-    //     $task->save();
-    //    return $task;
-    // }
+
     public function update(Request $request, Task $task)
     {
+        // $task->update([
+        //     'title' => $request->title,
+        //     'completed' => $request->completed,
+        //     'compleated_at' => $request->compleated_at ,
+        // ]);
+        $task->update([
+            'title' => $request->title,
+            'completed' => $request->completed,
+            'completed_at' => $request->completed_at,
+        ]);
 
-        $task->completed =  !$task->completed;
-        $task->save();
+
+
        return $task;
     }
 

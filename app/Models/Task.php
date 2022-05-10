@@ -17,8 +17,15 @@ class Task extends Model
     protected $fillable = [
         'title',
         'completed',
-        'ccompleted_at'
+        'completed_at'
 
+    ];
+
+    /**
+     * Casts : Date
+     */
+    protected $casts = [
+        'completed_at' => 'datetime',
     ];
 
 }
