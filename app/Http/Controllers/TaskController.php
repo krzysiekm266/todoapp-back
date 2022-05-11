@@ -90,17 +90,12 @@ class TaskController extends Controller
 
     public function update(Request $request, Task $task)
     {
-        // $task->update([
-        //     'title' => $request->title,
-        //     'completed' => $request->completed,
-        //     'compleated_at' => $request->compleated_at ,
-        // ]);
+
         $task->update([
             'title' => $request->title,
             'completed' => $request->completed,
             'completed_at' => $request->completed_at,
         ]);
-
 
 
        return $task;
